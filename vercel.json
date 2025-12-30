@@ -1,5 +1,18 @@
 {
   "version": 2,
-  "buildCommand": null,
-  "outputDirectory": "public"
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "public"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ]
 }
