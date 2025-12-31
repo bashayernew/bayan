@@ -277,7 +277,7 @@ body.bg {
 }
 .solution-card-front h3 {
   margin: 0;
-  font-size: 20px;
+  font-size: 28px;
   background: var(--gold-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -314,7 +314,7 @@ body.bg {
     height: 56px;
   }
   .solution-card-front h3 {
-    font-size: 18px;
+    font-size: 24px;
   }
 }
 
