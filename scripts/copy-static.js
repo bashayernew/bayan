@@ -37,3 +37,4 @@ if (fs.existsSync(bayanDir)) {
   console.log('bayan directory not found, skipping copy.');
 }
 
+

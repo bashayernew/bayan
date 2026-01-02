@@ -391,6 +391,49 @@
       sections.forEach(section => observer.observe(section));
     }
   }
+
+  // Background Music Player
+  (function initBackgroundMusic() {
+    const audio = document.getElementById('backgroundMusic');
+    if (!audio) return;
+
+    // Set volume (0.0 to 1.0)
+    audio.volume = 0.3;
+
+    // Try to play audio (may fail due to browser autoplay restrictions)
+    const playPromise = audio.play();
+    
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          // Audio started playing successfully
+          console.log('Background music started');
+        })
+        .catch(error => {
+          // Autoplay was prevented - user interaction required
+          console.log('Autoplay prevented, waiting for user interaction');
+          
+          // Play on first user interaction
+          const playOnInteraction = () => {
+            audio.play().catch(err => console.log('Could not play audio:', err));
+            document.removeEventListener('click', playOnInteraction);
+            document.removeEventListener('touchstart', playOnInteraction);
+            document.removeEventListener('keydown', playOnInteraction);
+          };
+          
+          document.addEventListener('click', playOnInteraction, { once: true });
+          document.addEventListener('touchstart', playOnInteraction, { once: true });
+          document.addEventListener('keydown', playOnInteraction, { once: true });
+        });
+    }
+
+    // Ensure music continues when page becomes visible
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden && audio.paused) {
+        audio.play().catch(err => console.log('Could not resume audio:', err));
+      }
+    });
+  })();
 })();
 
 

@@ -23,6 +23,11 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body class="bg">
+    <!-- Background Music -->
+    <audio id="backgroundMusic" loop autoplay preload="auto" style="display: none;">
+      <source src="assets/Beautiful Relaxing Music ▶️ 5-Star Hotel Lobby 🏩 Perfect for Studying, Casual Gathering with Friends.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
     <a class="skip-link" href="#main">تخطي إلى المحتوى</a>
 
     <header class="site-header" id="top">
@@ -420,16 +425,16 @@
                 </div>
                 <div>
                   <h4 data-i18n="contact.phone">الهاتف</h4>
-                  <p class="muted small">+965 24330610</p>
+                  <p class="muted small"><span dir="ltr" style="unicode-bidi: embed;" data-i18n="contact.phone.value">+965 24330610 - 98866544</span></p>
                 </div>
               </a>
-              <a href="mailto:info@bayan.example" class="contact-card-compact">
+              <a href="mailto:ovhrm1983@gmail.com" class="contact-card-compact">
                 <div class="icon-circle-small" aria-hidden="true">
                   <img src="assets/mail.png" alt="Email" width="28" height="28" style="display: block;" />
                 </div>
                 <div>
                   <h4 data-i18n="contact.email">البريد الإلكتروني</h4>
-                  <p class="muted small">info@bayan.example</p>
+                  <p class="muted small" data-i18n="contact.email.value">ovhrm1983@gmail.com</p>
                 </div>
               </a>
               <div class="contact-card-compact">
@@ -444,8 +449,9 @@
             </div>
             <a class="btn btn-wa btn-block" href="https://wa.me/96598866544" target="_blank" rel="noopener" data-i18n="cta.whatsapp" style="margin-top: 16px;">
               <img src="assets/whatsapp.png" alt="WhatsApp" width="18" height="18" aria-hidden="true" style="display: block;" />
-              <span>واتساب</span>
+              <span data-i18n="cta.whatsapp">واتساب</span>
             </a>
+            <p class="muted small" style="margin-top: 8px; text-align: center;" data-i18n="contact.whatsapp.value">+965 98866544</p>
           </div>
         </div>
       </section>

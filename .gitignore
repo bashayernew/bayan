@@ -34,3 +34,8 @@ dist/
 .cache/
 .parcel-cache/
 
+# Large audio files (exceed GitHub 100MB limit)
+*.mp3
+bayan/assets/*.mp3
+
+

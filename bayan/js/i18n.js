@@ -139,7 +139,10 @@
       'contact.title': 'تواصل معنا',
       'contact.intro': 'فريقنا جاهز لمساعدتكم في الاستشارات، تقديم العروض، والدعم الفني.',
       'contact.phone': 'الهاتف',
+      'contact.phone.value': '\u200E+965 24330610 - 98866544',
+      'contact.whatsapp.value': '+965 98866544',
       'contact.email': 'البريد الإلكتروني',
+      'contact.email.value': 'ovhrm1983@gmail.com',
       'contact.location': 'الموقع',
       'contact.location.value': 'الفروانية - الضجيج - مقابل ميداس للأثاث أو خلف لولو هايبر - مجمع الوفاء ۲ - ميزانين - معرض رقم 3',
 
@@ -294,7 +297,10 @@
       'contact.title': 'Contact Us',
       'contact.intro': 'Our team is ready to assist you with consultations, quotations, and technical support.',
       'contact.phone': 'Phone',
+      'contact.phone.value': '\u200E+965 24330610 - 98866544',
+      'contact.whatsapp.value': '+965 98866544',
       'contact.email': 'Email',
+      'contact.email.value': 'ovhrm1983@gmail.com',
       'contact.location': 'Location',
       'contact.location.value': 'Farwaniya - Al-Dajeej - Opposite Midas Furniture Behind Lulu Hyper - Al-Wafa 2 Complex - Mezanine - Showroom3',
 
