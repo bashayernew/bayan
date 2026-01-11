@@ -399,45 +399,49 @@
 
     // Check if audio file exists
     audio.addEventListener('error', (e) => {
-      console.log('Audio file not found. Please ensure the MP3 file is uploaded to the server or hosted on a CDN.');
-      // Optionally, you can set a CDN URL here:
-      // audio.src = 'https://your-cdn-url.com/path/to/music.mp3';
+      console.error('Audio file error:', e);
+      console.log('Audio file not found. Please ensure the MP3 file is uploaded to the server.');
     });
 
     // Set volume (0.0 to 1.0)
     audio.volume = 0.3;
 
-    // Try to play audio (may fail due to browser autoplay restrictions)
-    const playPromise = audio.play();
-    
-    if (playPromise !== undefined) {
-      playPromise
-        .then(() => {
-          // Audio started playing successfully
-          console.log('Background music started');
-        })
-        .catch(error => {
-          // Autoplay was prevented - user interaction required
-          console.log('Autoplay prevented, waiting for user interaction');
-          
-          // Play on first user interaction
-          const playOnInteraction = () => {
-            audio.play().catch(err => {
-              if (err.name === 'NotAllowedError') {
-                console.log('User interaction required to play audio');
-              } else {
-                console.log('Could not play audio:', err);
-              }
-            });
-            document.removeEventListener('click', playOnInteraction);
-            document.removeEventListener('touchstart', playOnInteraction);
-            document.removeEventListener('keydown', playOnInteraction);
-          };
-          
-          document.addEventListener('click', playOnInteraction, { once: true });
-          document.addEventListener('touchstart', playOnInteraction, { once: true });
-          document.addEventListener('keydown', playOnInteraction, { once: true });
-        });
+    // Wait for audio to be ready to play
+    const tryPlay = () => {
+      const playPromise = audio.play();
+      
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            // Audio started playing successfully
+            console.log('Background music started');
+          })
+          .catch(error => {
+            // Autoplay was prevented - user interaction required
+            console.log('Autoplay prevented, waiting for user interaction');
+            
+            // Play on first user interaction
+            const playOnInteraction = () => {
+              audio.play().catch(err => {
+                console.error('Could not play audio:', err);
+              });
+            };
+            
+            document.addEventListener('click', playOnInteraction, { once: true });
+            document.addEventListener('touchstart', playOnInteraction, { once: true });
+            document.addEventListener('keydown', playOnInteraction, { once: true });
+          });
+      }
+    };
+
+    // Try to play when audio is loaded enough
+    if (audio.readyState >= 2) {
+      tryPlay();
+    } else {
+      audio.addEventListener('canplay', tryPlay, { once: true });
+      audio.addEventListener('loadeddata', tryPlay, { once: true });
+      // Also try immediately in case it's already loading
+      tryPlay();
     }
 
     // Ensure music continues when page becomes visible
