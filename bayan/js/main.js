@@ -397,6 +397,13 @@
     const audio = document.getElementById('backgroundMusic');
     if (!audio) return;
 
+    // Check if audio file exists
+    audio.addEventListener('error', (e) => {
+      console.log('Audio file not found. Please ensure the MP3 file is uploaded to the server or hosted on a CDN.');
+      // Optionally, you can set a CDN URL here:
+      // audio.src = 'https://your-cdn-url.com/path/to/music.mp3';
+    });
+
     // Set volume (0.0 to 1.0)
     audio.volume = 0.3;
 
@@ -415,7 +422,13 @@
           
           // Play on first user interaction
           const playOnInteraction = () => {
-            audio.play().catch(err => console.log('Could not play audio:', err));
+            audio.play().catch(err => {
+              if (err.name === 'NotAllowedError') {
+                console.log('User interaction required to play audio');
+              } else {
+                console.log('Could not play audio:', err);
+              }
+            });
             document.removeEventListener('click', playOnInteraction);
             document.removeEventListener('touchstart', playOnInteraction);
             document.removeEventListener('keydown', playOnInteraction);
@@ -429,7 +442,7 @@
 
     // Ensure music continues when page becomes visible
     document.addEventListener('visibilitychange', () => {
-      if (!document.hidden && audio.paused) {
+      if (!document.hidden && audio.paused && audio.readyState >= 2) {
         audio.play().catch(err => console.log('Could not resume audio:', err));
       }
     });

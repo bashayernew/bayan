@@ -389,7 +389,7 @@
       setLanguage(savedLang, false);
     } else {
       // Default to Arabic if no preference is saved
-      setLanguage('ar', false);
+    setLanguage('ar', false);
     }
   });
 })();
