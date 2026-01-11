@@ -35,8 +35,7 @@ dist/
 .parcel-cache/
 
 # Large audio files (exceed GitHub 100MB limit)
-# Note: The MP3 file must be manually uploaded to Vercel or hosted on a CDN
-*.mp3
-bayan/assets/*.mp3
+# Note: Small MP3 files under 100MB are allowed
+# Only exclude very large files if needed
 
 
